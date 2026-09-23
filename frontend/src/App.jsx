@@ -1,4 +1,3 @@
-
 import './App.css';
 import { useState } from 'react';
 
@@ -8,7 +7,8 @@ import {
   Route,
   Link,
   Navigate,
-  useLocation
+  useLocation,
+  useNavigate
 } from 'react-router-dom';
 
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -27,14 +27,16 @@ import RecentlyCollected from './pages/RecentlyCollected';
 function Nav() {
   const { session, signOut, profile } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  /*
-    Do not show the authenticated navbar
-    when the user is not logged in.
-  */
+  // Do not show the authenticated navbar
+  // when the user is not logged in.
   if (!session) return null;
+
+  // Only LGU Admin can see the admin navigation.
+  const isAdmin = profile?.role === 'lgu_admin';
 
 
   function handleLogout() {
@@ -44,7 +46,11 @@ function Nav() {
 
   async function confirmLogout() {
     setShowLogoutModal(false);
+
     await signOut();
+
+    // Return to the Landing Page after logout.
+    navigate('/', { replace: true });
   }
 
 
@@ -55,10 +61,9 @@ function Nav() {
 
   return (
     <>
-
-      {/* =========================================
+      {/* =================================
           AUTHENTICATED NAVBAR
-      ========================================= */}
+      ================================= */}
 
       <nav className="navbar">
 
@@ -80,6 +85,7 @@ function Nav() {
         {/* NAVIGATION */}
         <div className="navbar-links">
 
+          {/* REPORT - ALL LOGGED-IN USERS */}
           <Link
             to="/report"
             className={
@@ -92,52 +98,59 @@ function Nav() {
           </Link>
 
 
-          <Link
-            to="/overview"
-            className={
-              location.pathname === '/overview'
-                ? 'active'
-                : ''
-            }
-          >
-            Overview
-          </Link>
+          {/* ADMIN-ONLY NAVIGATION */}
+          {isAdmin && (
+            <>
+
+              <Link
+                to="/overview"
+                className={
+                  location.pathname === '/overview'
+                    ? 'active'
+                    : ''
+                }
+              >
+                Overview
+              </Link>
 
 
-          <Link
-            to="/unresolved"
-            className={
-              location.pathname === '/unresolved'
-                ? 'active'
-                : ''
-            }
-          >
-            Unresolved
-          </Link>
+              <Link
+                to="/unresolved"
+                className={
+                  location.pathname === '/unresolved'
+                    ? 'active'
+                    : ''
+                }
+              >
+                Unresolved
+              </Link>
 
 
-          <Link
-            to="/logs"
-            className={
-              location.pathname === '/logs'
-                ? 'active'
-                : ''
-            }
-          >
-            Logs
-          </Link>
+              <Link
+                to="/logs"
+                className={
+                  location.pathname === '/logs'
+                    ? 'active'
+                    : ''
+                }
+              >
+                Logs
+              </Link>
 
 
-          <Link
-            to="/recently-collected"
-            className={
-              location.pathname === '/recently-collected'
-                ? 'active'
-                : ''
-            }
-          >
-            Recently Collected
-          </Link>
+              <Link
+                to="/recently-collected"
+                className={
+                  location.pathname === '/recently-collected'
+                    ? 'active'
+                    : ''
+                }
+              >
+                Recently Collected
+              </Link>
+
+            </>
+          )}
 
         </div>
 
@@ -146,11 +159,9 @@ function Nav() {
         <div className="navbar-user">
 
           <div className="user-info">
-
             <span className="user-role">
               {profile?.role || 'User'}
             </span>
-
           </div>
 
 
@@ -166,9 +177,9 @@ function Nav() {
       </nav>
 
 
-      {/* =========================================
-          LOGOUT CONFIRMATION MODAL
-      ========================================= */}
+      {/* =================================
+          LOGOUT MODAL
+      ================================= */}
 
       {showLogoutModal && (
 
@@ -226,22 +237,21 @@ function Nav() {
 export default function App() {
 
   return (
-
     <AuthProvider>
 
       <BrowserRouter>
 
-        {/* Authenticated navbar */}
         <Nav />
-
 
         <main className="app-content">
 
           <Routes>
 
-            {/* =========================================
-                PUBLIC LANDING PAGE
-            ========================================= */}
+            {/* =================================
+                MAIN PAGE
+                OPENING localhost:5173 WILL SHOW
+                THE LANDING PAGE
+            ================================= */}
 
             <Route
               path="/"
@@ -249,9 +259,9 @@ export default function App() {
             />
 
 
-            {/* =========================================
-                AUTHENTICATION
-            ========================================= */}
+            {/* =================================
+                LOGIN
+            ================================= */}
 
             <Route
               path="/login"
@@ -259,15 +269,20 @@ export default function App() {
             />
 
 
+            {/* =================================
+                CREATE ACCOUNT
+            ================================= */}
+
             <Route
               path="/create-account"
               element={<CreateAccount />}
             />
 
 
-            {/* =========================================
+            {/* =================================
                 REPORT
-            ========================================= */}
+                ALL LOGGED-IN USERS
+            ================================= */}
 
             <Route
               path="/report"
@@ -279,19 +294,16 @@ export default function App() {
             />
 
 
-            {/* =========================================
+            {/* =================================
                 OVERVIEW
-            ========================================= */}
+                ADMIN ONLY
+            ================================= */}
 
             <Route
               path="/overview"
               element={
                 <RoleGuard
-                  allow={[
-                    'barangay_official',
-                    'garbage_collector',
-                    'lgu_admin'
-                  ]}
+                  allow={['lgu_admin']}
                 >
                   <Overview />
                 </RoleGuard>
@@ -299,19 +311,16 @@ export default function App() {
             />
 
 
-            {/* =========================================
+            {/* =================================
                 UNRESOLVED
-            ========================================= */}
+                ADMIN ONLY
+            ================================= */}
 
             <Route
               path="/unresolved"
               element={
                 <RoleGuard
-                  allow={[
-                    'barangay_official',
-                    'garbage_collector',
-                    'lgu_admin'
-                  ]}
+                  allow={['lgu_admin']}
                 >
                   <Unresolved />
                 </RoleGuard>
@@ -319,19 +328,16 @@ export default function App() {
             />
 
 
-            {/* =========================================
+            {/* =================================
                 LOGS
-            ========================================= */}
+                ADMIN ONLY
+            ================================= */}
 
             <Route
               path="/logs"
               element={
                 <RoleGuard
-                  allow={[
-                    'barangay_official',
-                    'garbage_collector',
-                    'lgu_admin'
-                  ]}
+                  allow={['lgu_admin']}
                 >
                   <Logs />
                 </RoleGuard>
@@ -339,23 +345,27 @@ export default function App() {
             />
 
 
-            {/* =========================================
+            {/* =================================
                 RECENTLY COLLECTED
-            ========================================= */}
+                ADMIN ONLY
+            ================================= */}
 
             <Route
               path="/recently-collected"
               element={
-                <RoleGuard>
+                <RoleGuard
+                  allow={['lgu_admin']}
+                >
                   <RecentlyCollected />
                 </RoleGuard>
               }
             />
 
 
-            {/* =========================================
-                FALLBACK
-            ========================================= */}
+            {/* =================================
+                ANY UNKNOWN URL
+                GOES TO LANDING PAGE
+            ================================= */}
 
             <Route
               path="*"

@@ -18,6 +18,6 @@ const INTENSITY_LEVELS = [
 
 const REPORT_STATUS = ['unresolved', 'resolved', 'archived'];
 
-const ROLES = ['resident', 'barangay_official', 'garbage_collector', 'lgu_admin'];
+const ROLES = ['barangay_official', 'lgu_admin'];
 
 module.exports = { GARBAGE_TYPES, INTENSITY_LEVELS, REPORT_STATUS, ROLES };
