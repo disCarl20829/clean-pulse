@@ -5,6 +5,7 @@ const GARBAGE_TYPES = [
   'recyclable',         // e.g. bottles, cardboard, metal
   'residual',           // non-recyclable, non-biodegradable mixed waste
   'hazardous',          // e.g. batteries, chemicals, medical waste
+  'mix',                // mixed waste
 ];
 
 const INTENSITY_LEVELS = [

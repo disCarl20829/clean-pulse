@@ -2,7 +2,9 @@ import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+const CITY_BOUNDS = [[125.7200, 7.3800], [125.8900, 7.5000]]; 
+
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
 export default function MapView({ coords, onPick }) {
   const mapContainer = useRef(null);
@@ -12,14 +14,16 @@ export default function MapView({ coords, onPick }) {
   useEffect(() => {
     if (map.current) return; // Prevent map from initializing more than once
 
-    const initialLng = coords?.lng ?? 120.9842;
-    const initialLat = coords?.lat ?? 14.5995;
+    const initialLng = coords?.lng ?? 125.8036;
+    const initialLat = coords?.lat ?? 7.4472;
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
       center: [initialLng, initialLat], // Mapbox takes [lng, lat]
-      zoom: 12,
+      zoom: 8,
+      minZoom: 2,
+      maxBounds: CITY_BOUNDS,
     });
 
     // Click handler to pick location
