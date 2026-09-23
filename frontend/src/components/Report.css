@@ -1,3 +1,4 @@
+
 /* ================================
    REPORT PAGE
 ================================ */
@@ -5,12 +6,9 @@
 .report-page {
   min-height: 100vh;
   width: 100%;
-
   padding: 40px;
   box-sizing: border-box;
-
   background: #f7f8f5;
-
   font-family: Arial, Helvetica, sans-serif;
   color: #26332c;
 }
@@ -23,17 +21,11 @@
 .report-form {
   width: 100%;
   max-width: 900px;
-
   margin: 0 auto;
-
   background: #ffffff;
-
   border: 1px solid #e5ebe7;
   border-radius: 18px;
-
-  box-shadow:
-    0 10px 30px rgba(22, 70, 50, 0.07);
-
+  box-shadow: 0 10px 30px rgba(22, 70, 50, 0.07);
   overflow: hidden;
 }
 
@@ -44,26 +36,20 @@
 
 .report-header {
   padding: 30px 35px;
-
   border-bottom: 1px solid #edf0ee;
-
   background: #ffffff;
 }
 
 .report-header h1 {
   margin: 0 0 7px;
-
   color: #164632;
-
   font-size: 28px;
   font-weight: 700;
 }
 
 .report-header p {
   margin: 0;
-
   color: #718078;
-
   font-size: 14px;
   line-height: 1.5;
 }
@@ -92,18 +78,14 @@
 
 .section-title {
   margin: 0 0 6px;
-
   color: #164632;
-
   font-size: 17px;
   font-weight: 700;
 }
 
 .section-description {
   margin: 0 0 18px;
-
   color: #718078;
-
   font-size: 13px;
 }
 
@@ -116,23 +98,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   height: 44px;
-
   padding: 0 17px;
-
   border: 1px solid #1f5d42;
   border-radius: 8px;
-
   background: #ddefe5;
-
   color: #1f5d42;
-
   font-size: 13px;
   font-weight: 600;
-
   cursor: pointer;
-
   transition:
     background 0.2s ease,
     transform 0.2s ease;
@@ -140,7 +114,6 @@
 
 .location-button:hover {
   background: #cce5d8;
-
   transform: translateY(-1px);
 }
 
@@ -157,16 +130,11 @@
 
 .map-container {
   width: 100%;
-
   height: 380px;
-
   margin-top: 18px;
-
   border: 1px solid #dce5e0;
   border-radius: 12px;
-
   overflow: hidden;
-
   background: #eef2ef;
 }
 
@@ -183,14 +151,10 @@
 .selected-location {
   margin-top: 12px;
   padding: 12px 15px;
-
   border-left: 4px solid #1f5d42;
   border-radius: 6px;
-
   background: #f1f7f3;
-
   color: #26332c;
-
   font-size: 13px;
   line-height: 1.6;
 }
@@ -206,9 +170,7 @@
 
 .report-fields {
   display: grid;
-
   grid-template-columns: 1fr 1fr;
-
   gap: 20px;
 }
 
@@ -220,7 +182,6 @@
 .report-form-group {
   display: flex;
   flex-direction: column;
-
   gap: 7px;
 }
 
@@ -230,7 +191,6 @@
 
 .report-form-group label {
   color: #26332c;
-
   font-size: 13px;
   font-weight: 600;
 }
@@ -239,21 +199,14 @@
 .report-form-group textarea,
 .report-form-group input[type="text"] {
   width: 100%;
-
   box-sizing: border-box;
-
   border: 1px solid #d5ded9;
   border-radius: 8px;
-
   background: #ffffff;
-
   color: #26332c;
-
   font-family: inherit;
   font-size: 14px;
-
   outline: none;
-
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -261,17 +214,13 @@
 
 .report-form-group select {
   height: 46px;
-
   padding: 0 12px;
-
   cursor: pointer;
 }
 
 .report-form-group textarea {
   min-height: 120px;
-
   padding: 12px;
-
   resize: vertical;
 }
 
@@ -279,9 +228,7 @@
 .report-form-group textarea:focus,
 .report-form-group input[type="text"]:focus {
   border-color: #1f5d42;
-
-  box-shadow:
-    0 0 0 3px rgba(31, 93, 66, 0.10);
+  box-shadow: 0 0 0 3px rgba(31, 93, 66, 0.10);
 }
 
 
@@ -291,20 +238,15 @@
 
 .photo-upload {
   padding: 18px;
-
   border: 1px dashed #b9c9c0;
   border-radius: 10px;
-
   background: #f8faf8;
 }
 
 .photo-upload input[type="file"] {
   width: 100%;
-
   color: #718078;
-
   font-size: 13px;
-
   cursor: pointer;
 }
 
@@ -316,41 +258,29 @@
 .agreements {
   display: flex;
   flex-direction: column;
-
   gap: 12px;
-
   padding: 18px;
-
   border: 1px solid #e2e9e5;
   border-radius: 10px;
-
   background: #f8faf8;
 }
 
 .agreement {
   display: flex;
   align-items: flex-start;
-
   gap: 10px;
-
   color: #526159;
-
   font-size: 13px;
   line-height: 1.5;
-
   cursor: pointer;
 }
 
 .agreement input[type="checkbox"] {
   width: 17px;
   height: 17px;
-
   flex-shrink: 0;
-
   margin-top: 1px;
-
   accent-color: #1f5d42;
-
   cursor: pointer;
 }
 
@@ -361,16 +291,11 @@
 
 .report-error {
   margin-bottom: 20px;
-
   padding: 13px 15px;
-
   border: 1px solid #f0caca;
   border-radius: 8px;
-
   background: #fff4f4;
-
   color: #c94c4c;
-
   font-size: 13px;
   line-height: 1.5;
 }
@@ -382,16 +307,11 @@
 
 .report-success {
   margin-bottom: 20px;
-
   padding: 13px 15px;
-
   border: 1px solid #bcdcc9;
   border-radius: 8px;
-
   background: #edf8f1;
-
   color: #1f5d42;
-
   font-size: 13px;
   line-height: 1.5;
 }
@@ -404,30 +324,21 @@
 .submit-area {
   display: flex;
   justify-content: flex-end;
-
   padding-top: 25px;
-
   border-top: 1px solid #edf0ee;
 }
 
 .submit-button {
   min-width: 170px;
   height: 48px;
-
   padding: 0 22px;
-
   border: none;
   border-radius: 9px;
-
   background: #1f5d42;
-
   color: #ffffff;
-
   font-size: 14px;
   font-weight: 600;
-
   cursor: pointer;
-
   transition:
     background 0.2s ease,
     transform 0.2s ease,
@@ -436,10 +347,7 @@
 
 .submit-button:hover {
   background: #164632;
-
-  box-shadow:
-    0 7px 18px rgba(31, 93, 66, 0.20);
-
+  box-shadow: 0 7px 18px rgba(31, 93, 66, 0.20);
   transform: translateY(-1px);
 }
 
@@ -449,11 +357,8 @@
 
 .submit-button:disabled {
   opacity: 0.65;
-
   cursor: not-allowed;
-
   transform: none;
-
   box-shadow: none;
 }
 
@@ -463,7 +368,6 @@
 ================================ */
 
 @media (max-width: 700px) {
-
   .report-page {
     padding: 20px 15px;
   }
@@ -495,5 +399,5 @@
   .submit-button {
     width: 100%;
   }
-
 }
+
