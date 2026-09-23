@@ -54,5 +54,4 @@ npm run dev              # http://localhost:5173
   filters; map only shown for `garbage_collector` accounts.
 
 ## Roles
-`resident` (report only) · `barangay_official` · `garbage_collector` ·
-`lgu_admin` — the latter three can view Overview/Logs and update report status.
+`barangay_official` · `lgu_admin` — can view Overview/Logs and update report status.
