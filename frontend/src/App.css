@@ -1,0 +1,290 @@
+/* ================================
+   GLOBAL APP
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background: #f7f8f5;
+
+  color: #26332c;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+  width: 100%;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 28px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e5ebe7;
+
+  box-shadow:
+    0 2px 10px rgba(22, 70, 50, 0.05);
+
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+}
+
+
+/* ================================
+   BRAND
+================================ */
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #1f5d42;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+}
+
+.navbar-logo {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ddefe5;
+
+  color: #1f5d42;
+
+  font-size: 20px;
+}
+
+
+/* ================================
+   NAVIGATION LINKS
+================================ */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  margin-left: 45px;
+}
+
+.navbar-links a {
+  position: relative;
+
+  padding: 9px 13px;
+
+  border-radius: 7px;
+
+  color: #718078;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: #1f5d42;
+
+  background: #f1f7f3;
+}
+
+.navbar-links a.active {
+  color: #1f5d42;
+
+  background: #ddefe5;
+}
+
+
+/* ================================
+   USER AREA
+================================ */
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-left: auto;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-role {
+  padding: 7px 11px;
+
+  border-radius: 20px;
+
+  background: #f1f7f3;
+
+  color: #1f5d42;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: capitalize;
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+.logout-button {
+  height: 36px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d5ded9;
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #526159;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background: #fff4f4;
+
+  border-color: #efcccc;
+
+  color: #c94c4c;
+}
+
+
+/* ================================
+   APP CONTENT
+================================ */
+
+.app-content {
+  width: 100%;
+  min-height: calc(100vh - 68px);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 900px) {
+
+  .navbar {
+    height: auto;
+
+    min-height: 68px;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    padding: 12px 18px;
+  }
+
+  .navbar-links {
+    order: 3;
+
+    width: 100%;
+
+    margin-left: 0;
+
+    overflow-x: auto;
+
+    padding-bottom: 3px;
+  }
+
+  .navbar-user {
+    margin-left: auto;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .navbar {
+    padding: 12px 15px;
+  }
+
+  .navbar-brand {
+    font-size: 18px;
+  }
+
+  .navbar-logo {
+    width: 34px;
+    height: 34px;
+
+    font-size: 18px;
+  }
+
+  .user-role {
+    display: none;
+  }
+
+  .navbar-links {
+    gap: 2px;
+  }
+
+  .navbar-links a {
+    padding: 8px 10px;
+
+    font-size: 12px;
+  }
+
+  .logout-button {
+    height: 34px;
+
+    padding: 0 11px;
+
+    font-size: 11px;
+  }
+
+}
+

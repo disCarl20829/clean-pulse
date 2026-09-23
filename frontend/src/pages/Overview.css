@@ -1,0 +1,358 @@
+
+/* ================================
+   OVERVIEW PAGE
+================================ */
+
+.overview-page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 40px 45px;
+  box-sizing: border-box;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.overview-header {
+  margin-bottom: 24px;
+}
+
+.overview-header h1 {
+  margin: 0 0 7px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #164632;
+  letter-spacing: -0.4px;
+}
+
+.overview-header p {
+  margin: 0;
+  color: #718078;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* ================================
+   SUMMARY CARDS
+================================ */
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.overview-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  background: #ffffff;
+  border: 1px solid #e2e8e4;
+  border-radius: 14px;
+
+  padding: 18px 20px;
+  min-height: 88px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 3px 12px rgba(22, 70, 50, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.overview-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: #d3dfd8;
+  box-shadow: 0 7px 18px rgba(22, 70, 50, 0.08);
+}
+
+
+/* ================================
+   STAT ICON
+================================ */
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #ddefe5;
+  color: #1f5d42;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  flex-shrink: 0;
+}
+
+
+/* Unresolved */
+
+.overview-stat-card.unresolved .stat-icon {
+  background: #fff1d2;
+  color: #b87900;
+}
+
+
+/* Resolved */
+
+.overview-stat-card.resolved .stat-icon {
+  background: #ddefe5;
+  color: #1f5d42;
+}
+
+
+/* ================================
+   STAT TEXT
+================================ */
+
+.stat-label {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  color: #718078;
+}
+
+.overview-stat-card strong {
+  display: block;
+
+  font-size: 25px;
+  line-height: 1;
+
+  color: #26332c;
+}
+
+
+/* ================================
+   ERROR
+================================ */
+
+.overview-error {
+  margin-bottom: 20px;
+  padding: 13px 17px;
+
+  background: #fff0f0;
+  border: 1px solid #f1caca;
+  border-left: 4px solid #c94c4c;
+
+  border-radius: 9px;
+
+  color: #a63c3c;
+  font-size: 13px;
+}
+
+
+/* ================================
+   HOTSPOT CARD
+================================ */
+
+.hotspot-card {
+  background: #ffffff;
+
+  border: 1px solid #e2e8e4;
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 3px 12px rgba(22, 70, 50, 0.05);
+}
+
+
+/* ================================
+   HOTSPOT HEADER
+================================ */
+
+.hotspot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 20px 24px;
+
+  border-bottom: 1px solid #e7ece9;
+}
+
+.hotspot-header h2 {
+  margin: 0 0 5px;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  color: #164632;
+}
+
+.hotspot-header p {
+  margin: 0;
+
+  color: #718078;
+
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+
+/* ================================
+   HOTSPOT COUNT
+================================ */
+
+.hotspot-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 12px;
+
+  background: #ddefe5;
+  color: #1f5d42;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* ================================
+   MAP
+================================ */
+
+/*
+   Kept intentionally compact so the
+   dashboard does not become map-heavy.
+*/
+
+.hotspot-map {
+  width: 100%;
+  height: 360px;
+
+  background: #f7f8f5;
+  overflow: hidden;
+}
+
+
+/*
+   Make the map component fill the
+   available map area.
+*/
+
+.hotspot-map > div {
+  width: 100%;
+  height: 360px;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+  .overview-page {
+    padding: 26px 24px 40px;
+  }
+
+  .overview-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .hotspot-map {
+    height: 340px;
+  }
+
+  .hotspot-map > div {
+    height: 340px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .overview-page {
+    padding: 20px 16px 32px;
+  }
+
+  .overview-header {
+    margin-bottom: 20px;
+  }
+
+  .overview-header h1 {
+    font-size: 25px;
+  }
+
+  .overview-header p {
+    font-size: 13px;
+  }
+
+  .overview-stats {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .overview-stat-card {
+    padding: 16px;
+    min-height: 78px;
+  }
+
+  .stat-icon {
+    width: 43px;
+    height: 43px;
+
+    font-size: 20px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+  }
+
+  .overview-stat-card strong {
+    font-size: 23px;
+  }
+
+  .hotspot-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .hotspot-header h2 {
+    font-size: 18px;
+  }
+
+  .hotspot-header p {
+    font-size: 12px;
+  }
+
+  .hotspot-count {
+    font-size: 11px;
+  }
+
+  .hotspot-map {
+    height: 300px;
+  }
+
+  .hotspot-map > div {
+    height: 300px;
+  }
+}

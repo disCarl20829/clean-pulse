@@ -1,8 +1,11 @@
+import './CreateAccount.css';
+
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { apiPost } from '../lib/api';
 import { ROLES } from '../constants/roles';
+import './CreateAccount.css';
 
 export default function CreateAccount() {
   const [fullName, setFullName] = useState('');
@@ -22,15 +25,23 @@ export default function CreateAccount() {
     if (!role) return setError('Please select an account type.');
 
     setSubmitting(true);
+
     try {
-      // Stashed so AuthContext can finish profile creation after email
-      // confirmation, when there's no session yet to call the API with.
       localStorage.setItem(
         'cleanpulse_pending_profile',
-        JSON.stringify({ fullName, role, barangay: barangay || undefined })
+        JSON.stringify({
+          fullName,
+          role,
+          barangay: barangay || undefined
+        })
       );
 
-      const { data, error: signUpError } = await supabase.auth.signUp({ email, password });
+      const { data, error: signUpError } =
+        await supabase.auth.signUp({
+          email,
+          password
+        });
+
       if (signUpError) throw signUpError;
 
       if (!data.session) {
@@ -38,11 +49,18 @@ export default function CreateAccount() {
         return;
       }
 
-      await apiPost('/users/profile', { fullName, role, barangay: barangay || undefined });
+      await apiPost('/users/profile', {
+        fullName,
+        role,
+        barangay: barangay || undefined
+      });
+
       localStorage.removeItem('cleanpulse_pending_profile');
       navigate('/report');
+
     } catch (err) {
       setError(err.message);
+
     } finally {
       setSubmitting(false);
     }
@@ -50,66 +68,150 @@ export default function CreateAccount() {
 
   if (needsEmailConfirm) {
     return (
-      <div style={{ maxWidth: 360, margin: '80px auto' }}>
-        <h1>Check your email</h1>
-        <p>
-          We sent a confirmation link to <strong>{email}</strong>. Confirm it, then log in —
-          your account ({ROLES.find((r) => r.value === role)?.label}) will be set up on first login.
-        </p>
-        <Link to="/login">Back to login</Link>
+      <div className="create-account-page">
+        <div className="create-account-card confirmation-card">
+
+          <div className="logo-circle">♻</div>
+
+          <h1>Check your email</h1>
+
+          <p>
+            We sent a confirmation link to{' '}
+            <strong>{email}</strong>.
+          </p>
+
+          <p>
+            Confirm it, then log in. Your account
+            ({' '}
+            {ROLES.find((r) => r.value === role)?.label}
+            {' '})
+            will be set up on first login.
+          </p>
+
+          <Link to="/login" className="primary-button">
+            Back to login
+          </Link>
+
+        </div>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 360, margin: '80px auto' }}>
-      <h1>Create your CleanPulse account</h1>
+    <div className="create-account-page">
 
-      <label>
-        Full name
-        <input value={fullName} onChange={(e) => setFullName(e.target.value)} required />
-      </label>
+      <div className="create-account-card">
 
-      <label>
-        Email
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      </label>
+        <div className="brand">
+          <div className="logo-circle">♻</div>
+          <span>CleanPulse</span>
+        </div>
 
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          minLength={6}
-          required
-        />
-      </label>
+        <div className="form-header">
+          <h1>Create your account</h1>
+          <p>
+            Join CleanPulse and help build cleaner communities.
+          </p>
+        </div>
 
-      <label>
-        Account type
-        <select value={role} onChange={(e) => setRole(e.target.value)} required>
-          <option value="">Select account type</option>
-          {ROLES.map((r) => (
-            <option key={r.value} value={r.value}>{r.label}</option>
-          ))}
-        </select>
-      </label>
+        <form onSubmit={handleSubmit}>
 
-      <label>
-        Barangay {role === 'resident' ? '(optional)' : ''}
-        <input value={barangay} onChange={(e) => setBarangay(e.target.value)} />
-      </label>
+          <div className="form-group">
+            <label>Full name</label>
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </div>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-      <button type="submit" disabled={submitting}>
-        {submitting ? 'Creating account...' : 'Create account'}
-      </button>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Create a password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              minLength={6}
+              required
+            />
+          </div>
 
-      <p>
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
-    </form>
+          <div className="form-group">
+            <label>Account type</label>
+
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              required
+            >
+              <option value="">
+                Select account type
+              </option>
+
+              {ROLES.map((r) => (
+                <option key={r.value} value={r.value}>
+                  {r.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>
+              Barangay{' '}
+              {role === 'resident' ? '(optional)' : ''}
+            </label>
+
+            <input
+              type="text"
+              placeholder="Enter your barangay"
+              value={barangay}
+              onChange={(e) => setBarangay(e.target.value)}
+            />
+          </div>
+
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className="create-button"
+            disabled={submitting}
+          >
+            {submitting
+              ? 'Creating account...'
+              : 'Create account'}
+          </button>
+
+        </form>
+
+        <div className="login-link">
+          <span>Already have an account?</span>{' '}
+          <Link to="/login">
+            Log in
+          </Link>
+        </div>
+
+      </div>
+
+    </div>
   );
 }
+

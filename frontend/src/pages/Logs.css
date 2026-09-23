@@ -1,0 +1,633 @@
+
+/* =========================================================
+   CLEANPULSE
+   LOGS PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.logs-page {
+  width: 100%;
+  max-width: 1440px;
+
+  margin: 0 auto;
+  padding: 36px 42px 60px;
+
+  box-sizing: border-box;
+
+  color: #26332c;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.logs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 30px;
+}
+
+.logs-header h1 {
+  margin: 0 0 8px;
+
+  color: #164632;
+
+  font-size: 34px;
+  font-weight: 750;
+  line-height: 1.15;
+
+  letter-spacing: -0.5px;
+}
+
+.logs-header p {
+  margin: 0;
+
+  color: #718078;
+
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.logs-card {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e8e3;
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 4px 12px rgba(22, 70, 50, 0.04),
+    0 12px 30px rgba(22, 70, 50, 0.035);
+}
+
+
+/* =========================================================
+   FILTER AREA
+   ========================================================= */
+
+.logs-filters {
+  display: grid;
+
+  grid-template-columns:
+    minmax(180px, 1fr)
+    minmax(180px, 1fr)
+    minmax(180px, 1fr);
+
+  gap: 18px;
+
+  padding: 24px 26px;
+
+  background: #f8faf8;
+
+  border-bottom: 1px solid #e5ebe7;
+}
+
+
+/* =========================================================
+   FILTER GROUP
+   ========================================================= */
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.filter-group label {
+  color: #3c4942;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.2px;
+}
+
+.filter-group select {
+  width: 100%;
+  min-height: 44px;
+
+  padding: 0 38px 0 13px;
+
+  box-sizing: border-box;
+
+  appearance: auto;
+
+  border: 1px solid #d5ded9;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #26332c;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.filter-group select:hover {
+  border-color: #9db7aa;
+  background: #fcfdfc;
+}
+
+.filter-group select:focus {
+  border-color: #1f5d42;
+
+  box-shadow:
+    0 0 0 3px rgba(31, 93, 66, 0.1);
+}
+
+
+/* =========================================================
+   RESULTS INFORMATION
+   ========================================================= */
+
+.logs-results-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 48px;
+
+  padding: 0 26px;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #e7ece9;
+
+  color: #7a8780;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   TABLE CONTAINER
+   ========================================================= */
+
+.logs-table-container {
+  width: 100%;
+
+  overflow-x: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #b9c9c0 transparent;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.logs-table-container table {
+  width: 100%;
+  min-width: 760px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.logs-table-container thead th {
+  padding: 15px 18px;
+
+  background: #f8faf8;
+
+  border-bottom: 1px solid #dfe7e2;
+
+  color: #52615a;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  text-align: left;
+
+  text-transform: uppercase;
+  letter-spacing: 0.65px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE BODY
+   ========================================================= */
+
+.logs-table-container tbody td {
+  padding: 17px 18px;
+
+  border-bottom: 1px solid #edf1ee;
+
+  background: #ffffff;
+
+  color: #3e4b44;
+
+  font-size: 13px;
+
+  vertical-align: middle;
+
+  transition:
+    background 0.15s ease;
+}
+
+.logs-table-container tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.logs-table-container tbody tr:hover td {
+  background: #f8fbf9;
+}
+
+
+/* =========================================================
+   TABLE FIRST COLUMN
+   ========================================================= */
+
+.logs-table-container tbody td:first-child {
+  color: #164632;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   LINKS INSIDE TABLE
+   ========================================================= */
+
+.logs-table-container a {
+  color: #1f5d42;
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.logs-table-container a:hover {
+  color: #164632;
+
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.logs-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 75px 30px;
+
+  text-align: center;
+}
+
+.empty-icon {
+  width: 62px;
+  height: 62px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 17px;
+
+  background: #ddefe5;
+
+  color: #1f5d42;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  box-shadow:
+    0 5px 15px rgba(31, 93, 66, 0.08);
+}
+
+.logs-empty h3 {
+  margin: 0 0 7px;
+
+  color: #26332c;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.logs-empty p {
+  max-width: 420px;
+
+  margin: 0;
+
+  color: #7a8780;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.logs-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  min-height: 70px;
+
+  padding: 14px 26px;
+
+  box-sizing: border-box;
+
+  border-top: 1px solid #e5ebe7;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   PREVIOUS / NEXT
+   ========================================================= */
+
+.pagination-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 105px;
+  min-height: 38px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d5ded9;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #1f5d42;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background: #eef7f2;
+
+  border-color: #1f5d42;
+
+  color: #164632;
+
+  transform: translateY(-1px);
+}
+
+.pagination-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.pagination-button:disabled {
+  background: #f7f8f7;
+
+  border-color: #e5e9e7;
+
+  color: #a8b0ac;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   PAGE NUMBERS
+   ========================================================= */
+
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+}
+
+.pagination-page {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #637069;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.pagination-page:hover {
+  background: #eef7f2;
+
+  border-color: #d7e7de;
+
+  color: #1f5d42;
+}
+
+.pagination-page.active {
+  background: #1f5d42;
+
+  border-color: #1f5d42;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 3px 8px rgba(31, 93, 66, 0.18);
+}
+
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+.filter-button:focus-visible,
+.pagination-button:focus-visible,
+.pagination-page:focus-visible,
+.filter-group select:focus-visible {
+  outline: 3px solid rgba(31, 93, 66, 0.18);
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .logs-page {
+    padding: 30px 26px 50px;
+  }
+
+  .logs-filters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .logs-filters .filter-group:last-child {
+    grid-column: span 2;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .logs-page {
+    padding: 24px 18px 40px;
+  }
+
+  .logs-header {
+    margin-bottom: 22px;
+  }
+
+  .logs-header h1 {
+    font-size: 28px;
+  }
+
+  .logs-header p {
+    font-size: 14px;
+  }
+
+  .logs-filters {
+    grid-template-columns: 1fr;
+
+    padding: 20px;
+  }
+
+  .logs-filters .filter-group:last-child {
+    grid-column: auto;
+  }
+
+  .logs-results-info {
+    padding: 0 20px;
+  }
+
+  .logs-pagination {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    padding: 16px 20px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .logs-page {
+    padding: 20px 14px 35px;
+  }
+
+  .logs-header h1 {
+    font-size: 25px;
+  }
+
+  .logs-header p {
+    font-size: 13px;
+  }
+
+  .logs-card {
+    border-radius: 14px;
+  }
+
+  .logs-filters {
+    padding: 17px;
+  }
+
+  .filter-group select {
+    min-height: 42px;
+  }
+
+  .logs-results-info {
+    min-height: 44px;
+
+    padding: 0 17px;
+
+    font-size: 11px;
+  }
+
+  .logs-pagination {
+    gap: 12px;
+
+    padding: 14px 17px;
+  }
+
+  .pagination-button {
+    min-width: 90px;
+  }
+
+  .pagination-pages {
+    gap: 3px;
+  }
+
+  .pagination-page {
+    width: 32px;
+    height: 32px;
+  }
+
+}
