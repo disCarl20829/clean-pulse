@@ -12,7 +12,7 @@ import {
 
 import { AuthProvider, useAuth } from './context/AuthContext';
 import RoleGuard from './components/RoleGuard';
-
+import Unresolved from './pages/Unresolved';
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import Report from './pages/Report';
@@ -76,7 +76,16 @@ function Nav() {
           >
             Overview
           </Link>
-
+          <Link
+  to="/unresolved"
+  className={
+    location.pathname === '/unresolved'
+      ? 'active'
+      : ''
+  }
+>
+  Unresolved
+</Link>
           <Link
             to="/logs"
             className={location.pathname === '/logs' ? 'active' : ''}
@@ -243,6 +252,20 @@ export default function App() {
                 />
               }
             />
+            <Route
+  path="/unresolved"
+  element={
+    <RoleGuard
+      allow={[
+        'barangay_official',
+        'garbage_collector',
+        'lgu_admin'
+      ]}
+    >
+      <Unresolved />
+    </RoleGuard>
+  }
+/>
 
           </Routes>
 
