@@ -1,117 +1,97 @@
-/* ================================
-   GLOBAL APP
-================================ */
 
-* {
+/* ========================================
+   GLOBAL FONT
+======================================== */
+
+.app-content,
+.navbar,
+.logout-modal-overlay {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ========================================
+   GLOBAL APP LAYOUT
+======================================== */
+
+.app-content {
+  width: 100%;
+  min-height: calc(100vh - 70px);
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  background: #f7f8f5;
-
-  color: #26332c;
-}
-
-
-/* ================================
+/* ========================================
    NAVBAR
-================================ */
+======================================== */
 
 .navbar {
   width: 100%;
-  height: 68px;
-
+  height: 70px;
   display: flex;
   align-items: center;
-
-  padding: 0 28px;
-
+  padding: 0 32px;
+  box-sizing: border-box;
   background: #ffffff;
-
-  border-bottom: 1px solid #e5ebe7;
-
-  box-shadow:
-    0 2px 10px rgba(22, 70, 50, 0.05);
-
+  border-bottom: 1px solid #e2e8e4;
   position: sticky;
   top: 0;
-
   z-index: 1000;
+  box-shadow: 0 2px 10px rgba(22, 70, 50, 0.04);
 }
 
-
-/* ================================
+/* ========================================
    BRAND
-================================ */
+======================================== */
 
 .navbar-brand {
   display: flex;
   align-items: center;
-
   gap: 10px;
-
-  color: #1f5d42;
-
-  font-size: 20px;
-  font-weight: 700;
-
   text-decoration: none;
-
+  color: #164632;
+  font-size: 19px;
+  font-weight: 700;
   white-space: nowrap;
 }
+
+.navbar-brand:hover {
+  color: #1f5d42;
+}
+
+/* Logo */
 
 .navbar-logo {
   width: 38px;
   height: 38px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border-radius: 50%;
-
+  border-radius: 10px;
   background: #ddefe5;
-
   color: #1f5d42;
-
-  font-size: 20px;
+  font-size: 21px;
+  flex-shrink: 0;
 }
 
-
-/* ================================
+/* ========================================
    NAVIGATION LINKS
-================================ */
+======================================== */
 
 .navbar-links {
   display: flex;
   align-items: center;
-
   gap: 5px;
-
   margin-left: 45px;
 }
 
 .navbar-links a {
   position: relative;
-
-  padding: 9px 13px;
-
-  border-radius: 7px;
-
+  padding: 10px 14px;
   color: #718078;
-
-  font-size: 13px;
-  font-weight: 600;
-
   text-decoration: none;
-
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
   transition:
     color 0.2s ease,
     background 0.2s ease;
@@ -119,29 +99,29 @@ body {
 
 .navbar-links a:hover {
   color: #1f5d42;
-
-  background: #f1f7f3;
+  background: #f4f8f5;
 }
+
+/* Active link */
 
 .navbar-links a.active {
   color: #1f5d42;
-
-  background: #ddefe5;
+  background: #edf6f0;
+  font-weight: 600;
 }
 
-
-/* ================================
+/* ========================================
    USER AREA
-================================ */
+======================================== */
 
 .navbar-user {
   display: flex;
   align-items: center;
-
-  gap: 15px;
-
+  gap: 14px;
   margin-left: auto;
 }
+
+/* User information */
 
 .user-info {
   display: flex;
@@ -149,42 +129,32 @@ body {
 }
 
 .user-role {
+  display: inline-flex;
+  align-items: center;
   padding: 7px 11px;
-
-  border-radius: 20px;
-
-  background: #f1f7f3;
-
+  background: #f1f6f3;
+  border: 1px solid #dce8e1;
+  border-radius: 999px;
   color: #1f5d42;
-
-  font-size: 11px;
-  font-weight: 600;
-
-  text-transform: capitalize;
-}
-
-
-/* ================================
-   LOGOUT
-================================ */
-
-.logout-button {
-  height: 36px;
-
-  padding: 0 14px;
-
-  border: 1px solid #d5ded9;
-  border-radius: 7px;
-
-  background: #ffffff;
-
-  color: #526159;
-
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
+}
 
+/* ========================================
+   LOGOUT BUTTON
+======================================== */
+
+.logout-button {
+  height: 38px;
+  padding: 0 15px;
+  border: 1px solid #d8e1dc;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #52615a;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-
   transition:
     background 0.2s ease,
     color 0.2s ease,
@@ -192,80 +162,243 @@ body {
 }
 
 .logout-button:hover {
-  background: #fff4f4;
-
-  border-color: #efcccc;
-
-  color: #c94c4c;
+  background: #f4f7f5;
+  border-color: #c7d5cd;
+  color: #164632;
 }
 
+.logout-button:active {
+  transform: scale(0.98);
+}
 
-/* ================================
-   APP CONTENT
-================================ */
+/* ========================================
+   LOGOUT CONFIRMATION OVERLAY
+======================================== */
 
-.app-content {
+.logout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  min-height: calc(100vh - 68px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(22, 70, 50, 0.42);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  animation: logoutOverlayIn 0.18s ease;
 }
 
+/* ========================================
+   LOGOUT MODAL
+======================================== */
 
-/* ================================
-   MOBILE
-================================ */
+.logout-modal {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #e2e8e4;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(22, 70, 50, 0.18);
+  animation: logoutModalIn 0.2s ease;
+}
+
+/* ========================================
+   LOGOUT MODAL ICON
+======================================== */
+
+.logout-modal-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ddefe5;
+  color: #1f5d42;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/* ========================================
+   LOGOUT MODAL TITLE
+======================================== */
+
+.logout-modal h2 {
+  margin: 0 0 8px;
+  color: #164632;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ========================================
+   LOGOUT MODAL DESCRIPTION
+======================================== */
+
+.logout-modal p {
+  margin: 0 auto 24px;
+  max-width: 320px;
+  color: #718078;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ========================================
+   MODAL BUTTONS
+======================================== */
+
+.logout-modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Both buttons */
+
+.logout-cancel-button,
+.logout-confirm-button {
+  flex: 1;
+  height: 44px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* ========================================
+   CANCEL BUTTON
+======================================== */
+
+.logout-cancel-button {
+  background: #ffffff;
+  border: 1px solid #d5dfd9;
+  color: #52615a;
+}
+
+.logout-cancel-button:hover {
+  background: #f4f7f5;
+  border-color: #c3d0c9;
+  color: #164632;
+}
+
+/* ========================================
+   CONFIRM LOGOUT BUTTON
+======================================== */
+
+.logout-confirm-button {
+  background: #1f5d42;
+  border: 1px solid #1f5d42;
+  color: #ffffff;
+}
+
+.logout-confirm-button:hover {
+  background: #164632;
+  border-color: #164632;
+}
+
+/* Button press */
+
+.logout-cancel-button:active,
+.logout-confirm-button:active {
+  transform: scale(0.98);
+}
+
+/* ========================================
+   MODAL ANIMATIONS
+======================================== */
+
+@keyframes logoutOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes logoutModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ========================================
+   RESPONSIVE NAVBAR
+======================================== */
 
 @media (max-width: 900px) {
-
   .navbar {
     height: auto;
-
-    min-height: 68px;
-
+    min-height: 70px;
+    padding: 12px 20px;
     flex-wrap: wrap;
-
     gap: 10px;
-
-    padding: 12px 18px;
   }
 
   .navbar-links {
     order: 3;
-
     width: 100%;
-
     margin-left: 0;
-
+    padding-bottom: 4px;
     overflow-x: auto;
-
-    padding-bottom: 3px;
   }
 
   .navbar-user {
     margin-left: auto;
   }
-
 }
 
+/* ========================================
+   MOBILE
+======================================== */
 
 @media (max-width: 600px) {
-
   .navbar {
-    padding: 12px 15px;
+    padding: 12px 16px;
   }
 
   .navbar-brand {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .navbar-logo {
     width: 34px;
     height: 34px;
+    font-size: 19px;
+  }
 
-    font-size: 18px;
+  .navbar-user {
+    gap: 8px;
   }
 
   .user-role {
     display: none;
+  }
+
+  .logout-button {
+    height: 36px;
+    padding: 0 12px;
+    font-size: 12px;
   }
 
   .navbar-links {
@@ -273,18 +406,29 @@ body {
   }
 
   .navbar-links a {
-    padding: 8px 10px;
+    padding: 9px 11px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+}
 
-    font-size: 12px;
+/* ========================================
+   LOGOUT MODAL MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+  .logout-modal {
+    padding: 24px 20px;
+    border-radius: 16px;
   }
 
-  .logout-button {
-    height: 34px;
-
-    padding: 0 11px;
-
-    font-size: 11px;
+  .logout-modal-actions {
+    flex-direction: column-reverse;
   }
 
+  .logout-cancel-button,
+  .logout-confirm-button {
+    width: 100%;
+  }
 }
 

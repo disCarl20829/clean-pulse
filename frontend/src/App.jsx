@@ -1,5 +1,15 @@
+import './App.css';
+import { useState } from 'react';
 
-import { BrowserRouter, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+  useLocation
+} from 'react-router-dom';
+
 import { AuthProvider, useAuth } from './context/AuthContext';
 import RoleGuard from './components/RoleGuard';
 
@@ -10,85 +20,146 @@ import Overview from './pages/Overview';
 import Logs from './pages/Logs';
 import RecentlyCollected from './pages/RecentlyCollected';
 
-import './App.css';
+
+
+
 
 
 function Nav() {
   const { session, signOut, profile } = useAuth();
   const location = useLocation();
 
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
   if (!session) return null;
 
+  function handleLogout() {
+    setShowLogoutModal(true);
+  }
+
+  async function confirmLogout() {
+    setShowLogoutModal(false);
+    await signOut();
+  }
+
+  function cancelLogout() {
+    setShowLogoutModal(false);
+  }
+
   return (
-    <nav className="navbar">
+    <>
+      <nav className="navbar">
 
-      {/* Brand */}
-      <Link to="/report" className="navbar-brand">
-        <div className="navbar-logo">
-          ♻
+        {/* Brand */}
+        <Link to="/report" className="navbar-brand">
+          <div className="navbar-logo">
+            ♻
+          </div>
+
+          <span>CleanPulse</span>
+        </Link>
+
+
+        {/* Navigation */}
+        <div className="navbar-links">
+
+          <Link
+            to="/report"
+            className={location.pathname === '/report' ? 'active' : ''}
+          >
+            Report
+          </Link>
+
+          <Link
+            to="/overview"
+            className={location.pathname === '/overview' ? 'active' : ''}
+          >
+            Overview
+          </Link>
+
+          <Link
+            to="/logs"
+            className={location.pathname === '/logs' ? 'active' : ''}
+          >
+            Logs
+          </Link>
+
+          <Link
+            to="/recently-collected"
+            className={
+              location.pathname === '/recently-collected'
+                ? 'active'
+                : ''
+            }
+          >
+            Recently Collected
+          </Link>
+
         </div>
 
-        <span>CleanPulse</span>
-      </Link>
 
+        {/* User */}
+        <div className="navbar-user">
 
-      {/* Navigation */}
-      <div className="navbar-links">
+          <div className="user-info">
+            <span className="user-role">
+              {profile?.role || 'User'}
+            </span>
+          </div>
 
-        <Link
-          to="/report"
-          className={location.pathname === '/report' ? 'active' : ''}
-        >
-          Report
-        </Link>
+          <button
+            className="logout-button"
+            onClick={handleLogout}
+          >
+            Log out
+          </button>
 
-        <Link
-          to="/overview"
-          className={location.pathname === '/overview' ? 'active' : ''}
-        >
-          Overview
-        </Link>
-
-        <Link
-          to="/logs"
-          className={location.pathname === '/logs' ? 'active' : ''}
-        >
-          Logs
-        </Link>
-
-        <Link
-          to="/recently-collected"
-          className={
-            location.pathname === '/recently-collected'
-              ? 'active'
-              : ''
-          }
-        >
-          Recently Collected
-        </Link>
-
-      </div>
-
-
-      {/* User */}
-      <div className="navbar-user">
-
-        <div className="user-info">
-          <span className="user-role">
-            {profile?.role || 'User'}
-          </span>
         </div>
 
-        <button
-          className="logout-button"
-          onClick={signOut}
+      </nav>
+
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutModal && (
+        <div
+          className="logout-modal-overlay"
+          onClick={cancelLogout}
         >
-          Log out
-        </button>
+          <div
+            className="logout-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
 
-      </div>
 
-    </nav>
+            <h2>Log out?</h2>
+
+            <p>
+              Are you sure you want to log out of your CleanPulse account?
+            </p>
+
+            <div className="logout-modal-actions">
+
+              <button
+                className="logout-cancel-button"
+                onClick={cancelLogout}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="logout-confirm-button"
+                onClick={confirmLogout}
+              >
+                Log out
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      )}
+
+    </>
   );
 }
 
@@ -182,4 +253,3 @@ export default function App() {
     </AuthProvider>
   );
 }
-

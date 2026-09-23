@@ -358,160 +358,112 @@
 }
 
 
-/* =========================================================
+
+/* ========================================
    PAGINATION
-   ========================================================= */
+======================================== */
 
 .logs-pagination {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  min-height: 70px;
-
-  padding: 14px 26px;
-
-  box-sizing: border-box;
-
-  border-top: 1px solid #e5ebe7;
-
-  background: #ffffff;
-}
-
-
-/* =========================================================
-   PREVIOUS / NEXT
-   ========================================================= */
-
-.pagination-button {
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-
-  min-width: 105px;
-  min-height: 38px;
-
-  padding: 0 14px;
-
-  border: 1px solid #d5ded9;
-  border-radius: 9px;
-
+  gap: 16px;
+  padding: 22px 24px;
+  border-top: 1px solid #edf0ee;
   background: #ffffff;
-
-  color: #1f5d42;
-
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.15s ease;
 }
-
-.pagination-button:hover:not(:disabled) {
-  background: #eef7f2;
-
-  border-color: #1f5d42;
-
-  color: #164632;
-
-  transform: translateY(-1px);
-}
-
-.pagination-button:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.pagination-button:disabled {
-  background: #f7f8f7;
-
-  border-color: #e5e9e7;
-
-  color: #a8b0ac;
-
-  cursor: not-allowed;
-}
-
-
-/* =========================================================
-   PAGE NUMBERS
-   ========================================================= */
 
 .pagination-pages {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  gap: 5px;
+  gap: 6px;
 }
 
+.pagination-button,
 .pagination-page {
-  width: 36px;
-  height: 36px;
-
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  padding: 0;
-
-  border: 1px solid transparent;
+  height: 38px;
   border-radius: 8px;
-
-  background: transparent;
-
-  color: #637069;
-
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 700;
-
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
     color 0.2s ease;
 }
 
-.pagination-page:hover {
-  background: #eef7f2;
+/* Previous / Next */
 
-  border-color: #d7e7de;
+.pagination-button {
+  padding: 0 14px;
+  border: 1px solid #d5dfd9;
+  background: #ffffff;
+  color: #52615a;
+}
 
+.pagination-button:hover:not(:disabled) {
+  background: #f1f7f3;
+  border-color: #b9c9c0;
   color: #1f5d42;
 }
 
-.pagination-page.active {
-  background: #1f5d42;
-
-  border-color: #1f5d42;
-
-  color: #ffffff;
-
-  box-shadow:
-    0 3px 8px rgba(31, 93, 66, 0.18);
+.pagination-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
+/* Page numbers */
 
-/* =========================================================
-   FOCUS ACCESSIBILITY
-   ========================================================= */
+.pagination-page {
+  width: 38px;
+  padding: 0;
+  border: 1px solid #d5dfd9;
+  background: #ffffff;
+  color: #52615a;
+}
 
-.filter-button:focus-visible,
-.pagination-button:focus-visible,
-.pagination-page:focus-visible,
-.filter-group select:focus-visible {
-  outline: 3px solid rgba(31, 93, 66, 0.18);
+.pagination-page:hover {
+  background: #f1f7f3;
+  border-color: #b9c9c0;
+  color: #1f5d42;
+}
 
-  outline-offset: 2px;
+/* Active page */
+
+.pagination-page.active {
+  background: #1f5d42;
+  border-color: #1f5d42;
+  color: #ffffff;
+}
+
+/* ========================================
+   PAGINATION MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  .logs-pagination {
+    gap: 8px;
+    padding: 18px 12px;
+  }
+
+  .pagination-button {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .pagination-pages {
+    gap: 4px;
+  }
+
+  .pagination-page {
+    width: 34px;
+    height: 36px;
+    font-size: 12px;
+  }
 }
 
 
