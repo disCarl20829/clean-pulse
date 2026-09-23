@@ -1,3 +1,4 @@
+
 import './App.css';
 import { useState } from 'react';
 
@@ -12,17 +13,15 @@ import {
 
 import { AuthProvider, useAuth } from './context/AuthContext';
 import RoleGuard from './components/RoleGuard';
-import Unresolved from './pages/Unresolved';
+
+import Landing from './pages/Landing';
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import Report from './pages/Report';
 import Overview from './pages/Overview';
+import Unresolved from './pages/Unresolved';
 import Logs from './pages/Logs';
 import RecentlyCollected from './pages/RecentlyCollected';
-
-
-
-
 
 
 function Nav() {
@@ -31,67 +30,103 @@ function Nav() {
 
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
+  /*
+    Do not show the authenticated navbar
+    when the user is not logged in.
+  */
   if (!session) return null;
+
 
   function handleLogout() {
     setShowLogoutModal(true);
   }
+
 
   async function confirmLogout() {
     setShowLogoutModal(false);
     await signOut();
   }
 
+
   function cancelLogout() {
     setShowLogoutModal(false);
   }
 
+
   return (
     <>
+
+      {/* =========================================
+          AUTHENTICATED NAVBAR
+      ========================================= */}
+
       <nav className="navbar">
 
-        {/* Brand */}
-        <Link to="/report" className="navbar-brand">
+        {/* BRAND */}
+        <Link
+          to="/report"
+          className="navbar-brand"
+        >
           <div className="navbar-logo">
             ♻
           </div>
 
-          <span>CleanPulse</span>
+          <span>
+            CleanPulse
+          </span>
         </Link>
 
 
-        {/* Navigation */}
+        {/* NAVIGATION */}
         <div className="navbar-links">
 
           <Link
             to="/report"
-            className={location.pathname === '/report' ? 'active' : ''}
+            className={
+              location.pathname === '/report'
+                ? 'active'
+                : ''
+            }
           >
             Report
           </Link>
 
+
           <Link
             to="/overview"
-            className={location.pathname === '/overview' ? 'active' : ''}
+            className={
+              location.pathname === '/overview'
+                ? 'active'
+                : ''
+            }
           >
             Overview
           </Link>
+
+
           <Link
-  to="/unresolved"
-  className={
-    location.pathname === '/unresolved'
-      ? 'active'
-      : ''
-  }
->
-  Unresolved
-</Link>
+            to="/unresolved"
+            className={
+              location.pathname === '/unresolved'
+                ? 'active'
+                : ''
+            }
+          >
+            Unresolved
+          </Link>
+
+
           <Link
             to="/logs"
-            className={location.pathname === '/logs' ? 'active' : ''}
+            className={
+              location.pathname === '/logs'
+                ? 'active'
+                : ''
+            }
           >
             Logs
           </Link>
+
 
           <Link
             to="/recently-collected"
@@ -107,14 +142,17 @@ function Nav() {
         </div>
 
 
-        {/* User */}
+        {/* USER */}
         <div className="navbar-user">
 
           <div className="user-info">
+
             <span className="user-role">
               {profile?.role || 'User'}
             </span>
+
           </div>
+
 
           <button
             className="logout-button"
@@ -128,23 +166,32 @@ function Nav() {
       </nav>
 
 
-      {/* Logout Confirmation Modal */}
+      {/* =========================================
+          LOGOUT CONFIRMATION MODAL
+      ========================================= */}
+
       {showLogoutModal && (
+
         <div
           className="logout-modal-overlay"
           onClick={cancelLogout}
         >
+
           <div
             className="logout-modal"
             onClick={(e) => e.stopPropagation()}
           >
 
+            <h2>
+              Log out?
+            </h2>
 
-            <h2>Log out?</h2>
 
             <p>
-              Are you sure you want to log out of your CleanPulse account?
+              Are you sure you want to log out of your
+              CleanPulse account?
             </p>
+
 
             <div className="logout-modal-actions">
 
@@ -154,6 +201,7 @@ function Nav() {
               >
                 Cancel
               </button>
+
 
               <button
                 className="logout-confirm-button"
@@ -165,7 +213,9 @@ function Nav() {
             </div>
 
           </div>
+
         </div>
+
       )}
 
     </>
@@ -174,26 +224,50 @@ function Nav() {
 
 
 export default function App() {
+
   return (
+
     <AuthProvider>
 
       <BrowserRouter>
 
+        {/* Authenticated navbar */}
         <Nav />
+
 
         <main className="app-content">
 
           <Routes>
+
+            {/* =========================================
+                PUBLIC LANDING PAGE
+            ========================================= */}
+
+            <Route
+              path="/"
+              element={<Landing />}
+            />
+
+
+            {/* =========================================
+                AUTHENTICATION
+            ========================================= */}
 
             <Route
               path="/login"
               element={<Login />}
             />
 
+
             <Route
               path="/create-account"
               element={<CreateAccount />}
             />
+
+
+            {/* =========================================
+                REPORT
+            ========================================= */}
 
             <Route
               path="/report"
@@ -203,6 +277,11 @@ export default function App() {
                 </RoleGuard>
               }
             />
+
+
+            {/* =========================================
+                OVERVIEW
+            ========================================= */}
 
             <Route
               path="/overview"
@@ -219,6 +298,31 @@ export default function App() {
               }
             />
 
+
+            {/* =========================================
+                UNRESOLVED
+            ========================================= */}
+
+            <Route
+              path="/unresolved"
+              element={
+                <RoleGuard
+                  allow={[
+                    'barangay_official',
+                    'garbage_collector',
+                    'lgu_admin'
+                  ]}
+                >
+                  <Unresolved />
+                </RoleGuard>
+              }
+            />
+
+
+            {/* =========================================
+                LOGS
+            ========================================= */}
+
             <Route
               path="/logs"
               element={
@@ -234,6 +338,11 @@ export default function App() {
               }
             />
 
+
+            {/* =========================================
+                RECENTLY COLLECTED
+            ========================================= */}
+
             <Route
               path="/recently-collected"
               element={
@@ -243,29 +352,20 @@ export default function App() {
               }
             />
 
+
+            {/* =========================================
+                FALLBACK
+            ========================================= */}
+
             <Route
               path="*"
               element={
                 <Navigate
-                  to="/report"
+                  to="/"
                   replace
                 />
               }
             />
-            <Route
-  path="/unresolved"
-  element={
-    <RoleGuard
-      allow={[
-        'barangay_official',
-        'garbage_collector',
-        'lgu_admin'
-      ]}
-    >
-      <Unresolved />
-    </RoleGuard>
-  }
-/>
 
           </Routes>
 
