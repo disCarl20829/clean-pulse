@@ -1,29 +1,35 @@
-
 import './Landing.css';
+import { useAuth } from '../context/AuthContext';
 
 export default function Landing() {
+  const { session } = useAuth();
+
   return (
     <div className="landing-page">
 
-      {/* NAVBAR */}
-      <nav className="landing-navbar">
+      {/* NAVBAR
+          Only show when the user is NOT logged in.
+      */}
+      {!session && (
+        <nav className="landing-navbar">
 
-        <div className="landing-logo">
-          <div className="landing-logo-icon">♻</div>
-          <span>CleanPulse</span>
-        </div>
+          <div className="landing-logo">
+            <div className="landing-logo-icon">♻</div>
+            <span>CleanPulse</span>
+          </div>
 
-        <div className="landing-nav-links">
-          <a href="#about">About</a>
-          <a href="#features">Features</a>
-          <a href="#impact">Impact</a>
-        </div>
+          <div className="landing-nav-links">
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#impact">Impact</a>
+          </div>
 
-        <a href="/login" className="nav-login">
-          Sign In
-        </a>
+          <a href="/login" className="nav-login">
+            Sign In
+          </a>
 
-      </nav>
+        </nav>
+      )}
 
 
       {/* HERO */}
