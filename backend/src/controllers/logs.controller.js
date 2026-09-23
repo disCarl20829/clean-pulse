@@ -30,6 +30,8 @@ async function getLogs(req, res, next) {
     }
 
     const { data, error } = await query;
+
+
     if (error) throw error;
 
     res.json({ logs: data });

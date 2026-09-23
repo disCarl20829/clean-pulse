@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
-const DEFAULT_CENTER = [120.9842, 14.5995];
+const CITY_BOUNDS = [[125.7200, 7.3800], [125.8900, 7.5000]]; 
 const SOURCE_ID = 'hotspots';
 
 function toGeoJSON(hotspots) {
@@ -25,8 +25,10 @@ export default function HotspotMap({ hotspots = [] }) {
     mapRef.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
-      center: DEFAULT_CENTER,
-      zoom: 12,
+      center: [125.8036, 7.4472],
+      zoom: 8,
+      minZoom: 2,
+      maxBounds: CITY_BOUNDS,
     });
 
     mapRef.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
